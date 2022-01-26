@@ -1,0 +1,2 @@
+# CodiceTesi_AutosimmetriaEstesa
+ 
