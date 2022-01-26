@@ -1,7 +1,7 @@
 import os
 import re
     
-yourpath = 'plaCirianiPulite/'
+yourpath = 'pathPla/'
 
 for root, dirs, files in os.walk(yourpath, topdown=False):
     for name in files:
