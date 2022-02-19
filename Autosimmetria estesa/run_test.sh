@@ -40,6 +40,16 @@ function run_all_ones_new {
     fi
 }
 
+function run_generalized_new {
+    timeout 60m ./generalized_new.out $1 >> all_zeros_test.log 2>> all_zeros_test.err
+
+    if [ $? -eq 0 ]; then
+        echo "generalized_new su pla $1 eseguito correttamente"
+    else
+        echo "generalized_new su pla $1 fallito"
+    fi
+}
+
 function run_test_reduction {
     timeout 10m ./test_reduction.out $1 $2 $3 >> test_reduction.log 2>> test_reduction.err
 
@@ -52,7 +62,7 @@ function run_test_reduction {
 
 if [ $1 -eq 0 ] 
 then
-	for filename in plaCirianiS_splitMenoSenzaVuoti/*.pla
+	for filename in pla_split/*.pla
     		do
 	    		run_all_zeros $filename
     		done
@@ -60,7 +70,7 @@ fi
 
 if [ $1 -eq 1 ] 
 then
-	for filename in plaCirianiS_splitMenoSenzaVuoti/*.pla
+	for filename in pla_split/*.pla
     		do
 	    		run_all_ones $filename
     		done
@@ -68,7 +78,7 @@ fi
 
 if [ $1 -eq 2 ] 
 then
-	for filename in plaCirianiS_splitNotPassed/*.pla
+	for filename in pla_split/*.pla
     		do
 	    		run_all_zeros_new $filename
     		done
@@ -76,7 +86,7 @@ fi
 
 if [ $1 -eq 3 ] 
 then
-	for filename in plaCirianiS_splitNotPassed/*.pla
+	for filename in pla_split/*.pla
     		do
 	    		run_all_ones_new $filename
     		done
@@ -84,9 +94,17 @@ fi
 
 if [ $1 -eq 4 ] 
 then
-	for filename in plaCirianiS_splitMenoSenzaVuoti/*.pla
+	for filename in pla_split/*.pla
     		do
                 SUBSTRING=$(echo $filename| cut -d'/' -f 2)
                 run_test_reduction $filename fk/$SUBSTRING/fk0.pla eq/$SUBSTRING/eq0.re
     		done
+fi
+
+if [ $1 -eq 5 ] 
+then
+    for filename in pla_splitDC/*.pla
+            do
+                run_generalized_new $filename
+            done
 fi

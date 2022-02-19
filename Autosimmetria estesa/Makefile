@@ -5,6 +5,7 @@ target = all_zeros_test.out 					 \
 		 all_ones_test_new.out 			 		 \
 		 all_zeros_test_new.out					 \
 		 generalized_new.out                     \
+		 all_zeros_test_affini.out				 \
 		 test_reduction.out		
 
 OBJ  = parser.o autosymmetry.o equations.o
